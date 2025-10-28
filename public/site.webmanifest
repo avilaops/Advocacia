@@ -1,0 +1,16 @@
+{
+  "name": "Gonzales & Pitondo",
+  "short_name": "G&P",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f7f3",
+  "theme_color": "#0f2f24",
+  "description": "Advocacia Cível, Família, Penal e Imobiliário.",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

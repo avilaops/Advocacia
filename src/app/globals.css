@@ -3,14 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --green-darker: #0f2f24;
+  --gold: #c9a349;
+  --offwhite: #f8f7f3;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Removido @theme inline não suportado no Tailwind v4 preview; utilizando variáveis diretas + classes utilitárias custom */
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -24,3 +22,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.bg-green-darker { background-color: var(--green-darker); }
+.text-green-darker { color: var(--green-darker); }
+.bg-gold { background-color: var(--gold); }
+.text-gold { color: var(--gold); }
+.bg-offwhite { background-color: var(--offwhite); }
+.text-offwhite { color: var(--offwhite); }
+.border-green-200 { border-color: rgba(15,47,36,0.25); }
+.text-green-700 { color: #2e5a48; }
+.text-green-800 { color: #1e4435; }
+.text-green-600 { color: #3f6d58; }
+.bg-green-50 { background-color: #edf5f1; }
+.text-green-100 { color: #d7e5dd; }
+.text-green-200 { color: #c2d5cb; }
