@@ -1,0 +1,17 @@
+{
+  "name": "arcsat-crm",
+  "runtime": "NODE:20-lts",
+  "resourceGroup": "Avila",
+  "plan": "avila-shared-plan",
+  "deploymentSource": "https://github.com/avilaops/site",
+  "environmentVariables": {
+    "NODE_ENV": "production",
+    "WEBSITE_NODE_DEFAULT_VERSION": "20-lts",
+    "PORT": "8080"
+  },
+  "applicationSettings": {
+    "SCM_DO_BUILD_DURING_DEPLOYMENT": "true",
+    "WEBSITE_NODE_DEFAULT_VERSION": "~20",
+    "NODE_ENV": "production"
+  }
+}

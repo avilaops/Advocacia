@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
+    "start:next": "next start",
     "lint": "eslint"
   },
   "dependencies": {
@@ -19,5 +20,9 @@
     "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   }
 }
