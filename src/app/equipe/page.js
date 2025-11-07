@@ -1,3 +1,5 @@
+import { User, BadgeCheck } from "iconoir-react";
+
 export const metadata = {
   title: "Equipe | Gonzales & Pitondo",
   description: "Perfil profissional dos advogados com áreas principais de atuação.",
@@ -34,10 +36,15 @@ export default function EquipePage() {
             className="rounded-lg border border-green-200 bg-white p-6 shadow-sm space-y-3"
           >
             <div className="h-32 w-full rounded-md bg-green-100 flex items-center justify-center text-green-600 text-sm">
-              Foto profissional (placeholder)
+              <User width={48} height={48} strokeWidth={1.5} />
             </div>
-            <h2 className="font-medium text-green-darker">{p.nome}</h2>
-            <p className="text-xs text-green-600">{p.oab}</p>
+            <div className="flex items-center gap-2">
+              <h2 className="font-medium text-green-darker">{p.nome}</h2>
+            </div>
+            <div className="flex items-center gap-2 text-xs text-green-600">
+              <BadgeCheck width={16} height={16} strokeWidth={1.5} />
+              {p.oab}
+            </div>
             <p className="text-sm text-green-700 leading-relaxed">{p.texto}</p>
           </div>
         ))}

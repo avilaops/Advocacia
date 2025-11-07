@@ -1,3 +1,15 @@
+import {
+  ScaleFrameEnlarge,
+  Group,
+  DollarCircle,
+  Bank,
+  LockSquare,
+  HomeSimple,
+  Car,
+  ChatLines,
+  CheckCircle
+} from "iconoir-react";
+
 export const metadata = {
   title: "Áreas de Atuação | Gonzales & Pitondo",
   description: "Inventário, família, cobranças, bancário, penal, imobiliário e acidentes.",
@@ -6,6 +18,7 @@ export const metadata = {
 const blocos = [
   {
     grupo: "Família e Sucessões",
+    icon: ScaleFrameEnlarge,
     itens: [
       {
         titulo: "Inventário e Partilha",
@@ -33,6 +46,7 @@ const blocos = [
   },
   {
     grupo: "Cível e Cobranças",
+    icon: DollarCircle,
     itens: [
       {
         titulo: "Cobranças e Execução de Títulos",
@@ -57,6 +71,7 @@ const blocos = [
   },
   {
     grupo: "Bancário e Juros Abusivos",
+    icon: Bank,
     itens: [
       {
         titulo: "Contratos e Juros",
@@ -71,6 +86,7 @@ const blocos = [
   },
   {
     grupo: "Penal / Execução Penal",
+    icon: LockSquare,
     itens: [
       {
         titulo: "Acompanhamento Penal",
@@ -87,6 +103,7 @@ const blocos = [
   },
   {
     grupo: "Imobiliário e Locação",
+    icon: HomeSimple,
     itens: [
       {
         titulo: "Locação e Contratos",
@@ -103,6 +120,7 @@ const blocos = [
   },
   {
     grupo: "Acidente de Trânsito",
+    icon: Car,
     itens: [
       {
         titulo: "Responsabilidade e Indenização",
@@ -127,34 +145,45 @@ export default function AreasPage() {
           Linguagem direta e informativa sobre as principais situações em que atuamos. Para orientação inicial, explique sua situação pelo WhatsApp.
         </p>
       </header>
-      {blocos.map((bloco) => (
-        <section key={bloco.grupo} className="space-y-8" id={bloco.grupo.toLowerCase().replace(/[^a-zà-ú0-9]/gi, "-")}>          
-          <h2 className="text-2xl font-medium text-green-darker border-b border-green-200 pb-2">
-            {bloco.grupo}
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            {bloco.itens.map((item) => (
-              <div
-                key={item.titulo}
-                id={item.anchor}
-                className="rounded-lg border border-green-200 bg-white p-6 shadow-sm space-y-4"
-              >
-                <h3 className="font-medium text-green-darker">{item.titulo}</h3>
-                <ul className="list-disc pl-5 space-y-1 text-green-700 text-sm">
-                  {item.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
+      {blocos.map((bloco) => {
+        const IconComponent = bloco.icon;
+        return (
+          <section key={bloco.grupo} className="space-y-8" id={bloco.grupo.toLowerCase().replace(/[^a-zà-ú0-9]/gi, "-")}>
+            <div className="flex items-center gap-3 border-b border-green-200 pb-2">
+              <div className="p-2 bg-green-50 rounded-lg">
+                <IconComponent width={28} height={28} strokeWidth={1.5} className="text-green-darker" />
               </div>
-            ))}
-          </div>
-          {bloco.chamada && (
-            <p className="text-sm text-green-800 bg-green-50 border border-green-200 rounded-md p-4">
-              {bloco.chamada}
-            </p>
-          )}
-        </section>
-      ))}
+              <h2 className="text-2xl font-medium text-green-darker">
+                {bloco.grupo}
+              </h2>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2">
+              {bloco.itens.map((item) => (
+                <div
+                  key={item.titulo}
+                  id={item.anchor}
+                  className="rounded-lg border border-green-200 bg-white p-6 shadow-sm space-y-4"
+                >
+                  <h3 className="font-medium text-green-darker">{item.titulo}</h3>
+                  <ul className="space-y-2 text-green-700 text-sm">
+                    {item.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2">
+                        <CheckCircle width={18} height={18} strokeWidth={1.5} className="text-green-600 flex-shrink-0 mt-0.5" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            {bloco.chamada && (
+              <p className="text-sm text-green-800 bg-green-50 border border-green-200 rounded-md p-4">
+                {bloco.chamada}
+              </p>
+            )}
+          </section>
+        );
+      })}
       <div className="bg-green-darker text-offwhite rounded-lg p-8 space-y-4 mt-4">
         <p className="text-lg font-medium">
           Explique sua situação. Receba orientação jurídica inicial com descrição dos próximos passos e documentos necessários.

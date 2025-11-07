@@ -1,5 +1,7 @@
 "use client";
 
+import { ChatLines, Calendar, Phone, Mail } from "iconoir-react";
+
 export default function ContatoPage() {
   return (
     <div className="px-6 md:px-12 pb-24 max-w-4xl mx-auto space-y-12">
@@ -11,19 +13,26 @@ export default function ContatoPage() {
       </header>
       <section className="space-y-6">
         <div className="rounded-lg border border-green-200 bg-green-darker p-6 text-offwhite space-y-3">
-          <h2 className="text-xl font-medium">Questão urgente</h2>
+          <div className="flex items-center gap-3">
+            <ChatLines width={24} height={24} strokeWidth={1.5} />
+            <h2 className="text-xl font-medium">Questão urgente</h2>
+          </div>
           <p className="text-sm leading-relaxed">
             Use o canal direto para orientação inicial em situações que exigem ação rápida.
           </p>
           <a
             href="https://wa.me/5517981058013"
-            className="inline-flex items-center justify-center rounded-md bg-gold px-6 py-3 text-green-darker font-medium hover:bg-gold/90 transition"
+            className="inline-flex items-center gap-2 justify-center rounded-md bg-gold px-6 py-3 text-green-darker font-medium hover:bg-gold/90 transition"
           >
+            <ChatLines width={20} height={20} strokeWidth={1.5} />
             WhatsApp agora
           </a>
         </div>
         <div className="rounded-lg border border-green-200 bg-white p-6 space-y-4 shadow-sm">
-          <h2 className="text-xl font-medium text-green-darker">Agendar consulta no escritório</h2>
+          <div className="flex items-center gap-3">
+            <Calendar width={24} height={24} strokeWidth={1.5} className="text-green-darker" />
+            <h2 className="text-xl font-medium text-green-darker">Agendar consulta no escritório</h2>
+          </div>
           <p className="text-sm text-green-700 leading-relaxed">
             Preencha os dados para retorno. (Em primeiro deploy pode ser substituído por link direto para WhatsApp.)
           </p>
@@ -83,8 +92,9 @@ export default function ContatoPage() {
             </div>
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-md bg-green-darker px-6 py-3 text-offwhite font-medium hover:bg-green-900 transition"
+              className="inline-flex items-center gap-2 justify-center rounded-md bg-green-darker px-6 py-3 text-offwhite font-medium hover:bg-green-900 transition"
             >
+              <ChatLines width={20} height={20} strokeWidth={1.5} />
               Enviar pelo WhatsApp
             </button>
           </form>

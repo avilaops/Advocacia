@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Phone, ChatLines, Menu } from "iconoir-react";
 
 export default function Header() {
   return (
@@ -21,14 +22,16 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <a
             href="tel:+5517981058013"
-            className="hidden sm:inline text-sm font-medium text-green-darker hover:underline"
+            className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-green-darker hover:underline"
           >
+            <Phone width={18} height={18} strokeWidth={1.5} />
             (17) 98105-8013
           </a>
           <a
             href="https://wa.me/5517981058013"
-            className="inline-flex items-center rounded-md bg-green-darker text-offwhite px-4 py-2 text-sm font-medium hover:bg-green-900"
+            className="inline-flex items-center gap-2 rounded-md bg-green-darker text-offwhite px-4 py-2 text-sm font-medium hover:bg-green-900"
           >
+            <ChatLines width={18} height={18} strokeWidth={1.5} />
             WhatsApp
           </a>
         </div>
