@@ -68,91 +68,25 @@ npm run build
 npm start
 ```
 
-## Deploy (Vercel recomendado)
+## 🚀 Deploy
 
-## Deploy em Azure Web App
+O projeto está configurado para **Azure Static Web Apps** com deploy automático via GitHub Actions.
 
-O projeto está configurado para deploy no Azure Web App (arcsat-crm) usando Node.js 20 LTS.
+Para detalhes completos sobre o deploy, consulte [DEPLOY.md](./DEPLOY.md).
 
-### Criação do Azure Web App via CLI
+### Configuração Rápida
 
-Execute o seguinte comando para criar o Web App:
+1. Deploy automático em cada push para `main`
+2. Build: Next.js com output `.next`
+3. Workflow: `.github/workflows/azure-static-web-apps-mango-river-07e136c1e.yml`
 
-```bash
-az webapp create --name arcsat-crm --resource-group Avila --plan avila-shared-plan --runtime "NODE:20-lts" --deployment-source-url https://github.com/avilaops/site
-```
+### DNS Customizado
 
-### Deploy Automático via GitHub Actions
-
-1. No portal Azure, vá para o Web App `arcsat-crm`
-2. Em **Deployment Center**, selecione GitHub como fonte
-3. Configure o repositório e branch (main)
-4. O Azure criará automaticamente um **Publish Profile**
-5. Baixe o Publish Profile e adicione como secret no GitHub:
-   - Nome do secret: `AZUREAPPSERVICE_PUBLISHPROFILE_ARCSAT_CRM`
-   - Valor: Conteúdo do arquivo de publish profile
-6. O workflow `.github/workflows/azure-webapps-node.yml` fará o deploy automaticamente em cada push para `main`
-
-### Configuração Manual
-
-Caso prefira deploy manual:
-
-```bash
-# Fazer build localmente
-npm run build
-
-# Deploy via Azure CLI
-az webapp up --name arcsat-crm --resource-group Avila
-```
-
-### Variáveis de Ambiente no Azure
-
-Configure as seguintes Application Settings no portal Azure:
-
-- `NODE_ENV`: `production`
-- `WEBSITE_NODE_DEFAULT_VERSION`: `~20`
-- `PORT`: `8080` (ou deixar default)
-
-### Arquivos de Configuração
-
-- `web.config`: Configuração IIS para Azure App Service
-- `server.js`: Servidor Node.js customizado para produção
-- `azure-config.json`: Configurações específicas do Azure
-- `.deployment`: Script de deployment customizado
-
-## Deploy em Azure Static Web Apps
-
-Estratégia: usar Azure Static Web Apps com build do Next.js (App Router). Workflow GitHub Actions adicionado em `.github/workflows/azure-static-web-apps.yml` na raiz do repositório.
-
-### Passos
-
-1. Criar recurso Azure Static Web App (plano Standard ou Free) apontando para o repositório GitHub `avilaops/REPO`.
-2. Branch: `main`.
-3. App Location: `site`.
-4. Output Location: `.next`.
-5. Gerar token (Automatico ao criar recurso) e adicionar no repositório como secret `AZURE_STATIC_WEB_APPS_API_TOKEN`.
-6. Fazer push na branch `main` para disparar deploy.
-
-### DNS domínio `adv.avila.inc`
-
-Após provisionar, em Azure Static Web Apps > Custom domains:
-
-1. Adicionar `adv.avila.inc`.
-2. Azure fornecerá registro CNAME para apontar (ex: `adv` -> `<gerado>.azurestaticapps.net`).
-3. Validar propagação e aguardar certificado SSL automático.
-
-### Observações
-
-- Arquivo `staticwebapp.config.json` inclui headers de segurança básicos.
-- Caso precise rotas dinâmicas futuras, remover `navigationFallback` ou ajustar conforme necessidade.
-- Para gerar imagem OG real substituir `public/og-image.png`.
-
-
-1. Inicialize repositório git se não existir: já criado pelo create-next-app.
-2. Commit das alterações.
-3. Crie projeto no Vercel e conecte o repositório.
-4. Variáveis de ambiente: não são necessárias neste estágio.
-5. Após deploy substituir `metadataBase` em `src/app/layout.js` pelo domínio definitivo.
+Para configurar o domínio `adv.avila.inc`:
+1. No Azure Static Web Apps, vá em **Custom domains**
+2. Adicione `adv.avila.inc`
+3. Configure o CNAME apontando para o domínio fornecido pelo Azure
+4. Aguarde validação e certificado SSL automático
 
 ## Ajustes futuros
 

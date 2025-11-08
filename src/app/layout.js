@@ -27,13 +27,19 @@ export const metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-  alt: "Gonzales & Pitondo - Advocacia",
+        alt: "Gonzales & Pitondo - Advocacia",
       },
     ],
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+    shortcut: ["/favicon.ico"],
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
@@ -45,7 +51,7 @@ import Footer from "../components/Footer";
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-offwhite text-foreground`}>        
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-offwhite text-foreground`}>
         <Header />
         <main className="pt-24">{children}</main>
         <Footer />

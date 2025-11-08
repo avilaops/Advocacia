@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+import { promises as fs } from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { Resvg } from "@resvg/resvg-js";
+import pngToIco from "png-to-ico";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const publicDir = path.resolve(__dirname, "..", "public");
+
+const baseSvg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#134536" />
+      <stop offset="100%" stop-color="#0f2f24" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a349" />
+      <stop offset="100%" stop-color="#e7c873" />
+    </linearGradient>
+  </defs>
+  <rect x="48" y="48" width="416" height="416" rx="120" fill="url(#bgGradient)" />
+  <circle cx="166" cy="174" r="36" fill="#ffffff" opacity="0.08" />
+  <circle cx="360" cy="152" r="52" fill="#ffffff" opacity="0.06" />
+  <path d="M256 128c-7.3 0-13.3 6-13.3 13.3v76.7h-96c-7.3 0-13.3 6-13.3 13.3 0 6.8 5 12.5 11.6 13.3l57.8 7.6-63.7 107c-3.6 6.1-1.5 14 4.6 17.6 6.1 3.6 14 1.5 17.6-4.6l75.1-126.2 75.1 126.2c3.6 6.1 11.4 8.2 17.6 4.6 6.1-3.6 8.2-11.4 4.6-17.6l-63.7-107 57.8-7.6c6.6-0.9 11.6-6.6 11.6-13.3 0-7.3-6-13.3-13.3-13.3h-96v-76.7c0-7.3-6-13.3-13.3-13.3z" fill="#f8f7f3" />
+  <path d="M176 240v48" stroke="url(#accentGradient)" stroke-width="20" stroke-linecap="round" />
+  <path d="M336 240v48" stroke="url(#accentGradient)" stroke-width="20" stroke-linecap="round" />
+  <path d="M172 296c-33.1 0-60 26.9-60 60 0 26.5 21.5 48 48 48h24c26.5 0 48-21.5 48-48 0-33.1-26.9-60-60-60z" fill="none" stroke="url(#accentGradient)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M340 296c-33.1 0-60 26.9-60 60 0 26.5 21.5 48 48 48h24c26.5 0 48-21.5 48-48 0-33.1-26.9-60-60-60z" fill="none" stroke="url(#accentGradient)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="220" y="356" width="72" height="28" rx="14" fill="url(#accentGradient)" />
+  <rect x="200" y="394" width="112" height="24" rx="12" fill="#f8f7f3" opacity="0.85" />
+</svg>`;
+
+const pngTargets = [
+    { size: 16, name: "favicon-16x16.png" },
+    { size: 32, name: "favicon-32x32.png" },
+    { size: 48, name: "favicon-48x48.png" },
+    { size: 64, name: "favicon-64x64.png" },
+    { size: 180, name: "apple-touch-icon.png" },
+    { size: 192, name: "android-chrome-192x192.png" },
+    { size: 384, name: "android-chrome-384x384.png" },
+    { size: 512, name: "android-chrome-512x512.png" }
+];
+
+async function main() {
+    await fs.mkdir(publicDir, { recursive: true });
+
+    const svgPath = path.join(publicDir, "favicon.svg");
+    await fs.writeFile(svgPath, baseSvg, "utf8");
+
+    const icoSources = [];
+
+    for (const target of pngTargets) {
+        const resvg = new Resvg(baseSvg, {
+            fitTo: {
+                mode: "width",
+                value: target.size,
+            },
+            background: "transparent",
+        });
+
+        const pngData = resvg.render();
+        const pngBuffer = pngData.asPng();
+        const outputPath = path.join(publicDir, target.name);
+        await fs.writeFile(outputPath, pngBuffer);
+
+        if (target.size <= 64) {
+            icoSources.push(outputPath);
+        }
+    }
+
+    const icoBuffer = await pngToIco(icoSources);
+    await fs.writeFile(path.join(publicDir, "favicon.ico"), icoBuffer);
+
+    console.log("✅ Favicons generated em \"public\"");
+}
+
+main().catch((error) => {
+    console.error("Falha ao gerar favicons:\n", error);
+    process.exitCode = 1;
+});
