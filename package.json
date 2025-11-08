@@ -1,6 +1,27 @@
 {
-  "name": "site",
-  "version": "0.1.0",
+  "name": "gonzales-pitondo-advocacia",
+  "version": "1.0.0",
+  "description": "Site institucional moderno e profissional para escritório de advocacia",
+  "author": "Avila Ops <contato@avila.inc>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avilaops/Advocacia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avilaops/Advocacia/issues"
+  },
+  "homepage": "https://advocacia.avila.inc",
+  "keywords": [
+    "nextjs",
+    "react",
+    "tailwindcss",
+    "advocacia",
+    "escritorio-advocacia",
+    "juridico",
+    "law-firm",
+    "website"
+  ],
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
