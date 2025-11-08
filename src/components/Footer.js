@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div className="space-y-2">
           <p className="leading-relaxed">
-            © {new Date().getFullYear()} Gonzales & Pitondo. Conteúdo informativo conforme normas da OAB (sem promessa de resultado).
+            © {new Date().getFullYear()} Gonzales & Pitondo. Conteúdo informativo conforme normas da OAB.
           </p>
           <p className="text-xs text-green-600">
             Este site não faz publicidade agressiva. Uso restrito a informação jurídica.
