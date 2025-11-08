@@ -7,7 +7,7 @@ import { IconName } from "iconoir-react";
 ```
 
 ## Uso Básico
-
+\
 ```jsx
 <IconName width={20} height={20} strokeWidth={1.5} />
 ```
@@ -15,10 +15,10 @@ import { IconName } from "iconoir-react";
 ## Com Estilo
 
 ```jsx
-<IconName 
-  width={24} 
-  height={24} 
-  strokeWidth={1.5} 
+<IconName
+  width={24}
+  height={24}
+  strokeWidth={1.5}
   className="text-green-600"
 />
 ```
@@ -27,7 +27,7 @@ import { IconName } from "iconoir-react";
 
 ### Jurídico
 ```javascript
-import { 
+import {
   Scale,          // Inventário e Partilha
   Group,          // Família e Guarda
   DollarCircle,   // Cobranças
@@ -40,7 +40,7 @@ import {
 
 ### Comunicação
 ```javascript
-import { 
+import {
   ChatLines,      // WhatsApp/Chat
   Phone,          // Telefone
   Mail            // E-mail
@@ -49,7 +49,7 @@ import {
 
 ### Navegação
 ```javascript
-import { 
+import {
   ArrowRight,     // Seta direita
   Menu,           // Menu hamburguer
   MapPin          // Localização
@@ -58,7 +58,7 @@ import {
 
 ### Organização
 ```javascript
-import { 
+import {
   Calendar,       // Agendamento
   Clock           // Horário
 } from "iconoir-react";
@@ -66,7 +66,7 @@ import {
 
 ### Interface
 ```javascript
-import { 
+import {
   CheckCircle,    // Confirmação/Sucesso
   InfoCircle,     // Informação
   User,           // Perfil/Usuário
